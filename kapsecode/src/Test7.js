@@ -40,7 +40,7 @@ const Test7=()=>{
             <form noValidate autoComplete="off" className="d-flex p-2 bd-highlight">
                 <TextField className="m-3" id="standard-basic" label="Question" value={data.question} name="question" onChange={setVal}/>
                 <TextField className="m-3" id="standard-basic" label="Ans" value={data.ans} name="ans" onChange={setVal}/>
-                <Button className="m-3" variant="contained" color="primary" onClick={getVal}>Ask question</Button>
+                <Button className="m-3" variant="contained" color="primary" onClick={getVal}>Add question</Button>
             </form>
       
 
