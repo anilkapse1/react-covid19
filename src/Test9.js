@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Card, Badge } from "react-bootstrap";
 import axios from 'axios';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 const Test9 = () => {
 
@@ -34,7 +34,9 @@ const Test9 = () => {
     axios.get('https://api.covid19api.com/summary')
     .then(res=>{
       setLatest(res.data.Global);
+      console.log(res);
       setData(res.data.Countries);
+      console.log(res.data.Countries);
 
     })
     .catch(err=>{
@@ -47,11 +49,12 @@ const Test9 = () => {
 
   return (
     <React.Fragment>
-      <TextField className="mt-5" id="standard-basic" label="Search Country" variant="standard" onChange={findCountry}/>
-     <Typography className="m-2" variant="overline" display="block" gutterBottom>
-         {country}
-      </Typography>
-    <div className="d-flex flex-row flex-wrap">
+
+<Typography variant="h5" gutterBottom component="div" className="mt-3">
+        Covid19 overall
+  </Typography>
+     
+    <div className="d-flex flex-row flex-wrap mt-1">
       {colorSet.map((variant, idx) => {
         return (
           <Card
@@ -72,7 +75,9 @@ const Test9 = () => {
       })}
       </div>
 
-
+      <div style={{margin:'8px'}}>
+        <TextField id="standard-basic" label="Search Country" variant="standard" onChange={findCountry}/>
+      </div>
       <div className="d-flex flex-row flex-wrap">
       {searchResult.map((variant, idx) => {
         return (
