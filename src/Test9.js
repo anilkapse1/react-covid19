@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Card } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -10,14 +10,15 @@ const Test9 = () => {
   const [country, setCountry] = useState("");
   const findCountry=(e)=>{
     const {value} = e.target;
-    setCountry(value);
+    const searchText =  value.charAt(0).toUpperCase()+value.slice(1);
+    setCountry(searchText);
   }
 
-  console.log(country.toLowerCase());
+  console.log(country);
   const [latest, setLatest] = useState([]);
   const [data, setData] = useState([]);
 
-  const colorSet = ['Light','Danger','Success'];
+  const colorSet = ['info','Danger','Success'];
   const covidData = ['cases','deaths','recover'];
   const {TotalConfirmed, TotalDeaths,TotalRecovered} = latest;
   const globdata = [TotalConfirmed,TotalDeaths,TotalRecovered];
@@ -48,7 +49,7 @@ const Test9 = () => {
     <React.Fragment>
       <TextField className="mt-5" id="standard-basic" label="Search Country" variant="standard" onChange={findCountry}/>
      <Typography className="m-2" variant="overline" display="block" gutterBottom>
-         
+         {country}
       </Typography>
     <div className="d-flex flex-row flex-wrap">
       {colorSet.map((variant, idx) => {
@@ -84,13 +85,13 @@ const Test9 = () => {
             <Card.Header>{variant.Country}</Card.Header>
             <Card.Body>
             <Card.Text>
-                {variant.TotalConfirmed}
+                TotalConfirmed:  <Badge bg="info">{variant.TotalConfirmed}</Badge>
               </Card.Text>
               <Card.Text>
-                {variant.TotalDeaths}
+                TotalDeaths:  <Badge bg="danger">{variant.TotalDeaths}</Badge>
               </Card.Text>
               <Card.Text>
-                {variant.TotalRecovered}
+                TotalRecovered:  <Badge bg="success">{variant.TotalRecovered}</Badge>
               </Card.Text>
             </Card.Body>
           </Card>
